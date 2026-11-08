@@ -43,6 +43,9 @@ python src/stills.py act2 b13_crash:1.1 b15_hosp1:4   # contact sheet of chosen 
 | `src/audio.py` | A tiny synthesiser (concertina reed, pizzicato, glockenspiel, bassoon), the score, the SFX and the mixer |
 | `src/build.py` | Renders the shots in parallel, joins them with the ffmpeg concat demuxer, and muxes in the soundtrack |
 
+The online preview is served by GitHub Pages from the `gh-pages` branch, which is a copy of `docs/`.
+To republish after a re-render: copy `build/duck.mp4` into `docs/`, then push the contents of `docs/` to `gh-pages`.
+
 A shot is just a duration plus a `draw(ctx, t)` function, so changing one moment of the film means editing
 one function and re-rendering one shot.
 
