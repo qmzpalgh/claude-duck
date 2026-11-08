@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DUCK, a silent picture</title>
+<meta name="description" content="A silent 2D animated short drawn entirely in code, after the screenplay by Damian Gason.">
+<meta property="og:title" content="DUCK, a silent picture">
+<meta property="og:image" content="stills/title.jpg">
+<style>
+  @font-face { font-family:"Abril Fatface"; src:url(fonts/AbrilFatface-Regular.ttf) format("truetype"); font-display:swap; }
+  :root { --paper:#efe6d2; --ink:#1f1714; --rule:#1f171433; --accent:#c43b2d; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:#2a2420; color:var(--ink); font:17px/1.6 Georgia, "Times New Roman", serif; }
+  .sheet { max-width:1040px; margin:32px auto; background:var(--paper); padding:40px 48px 56px;
+           box-shadow:0 20px 60px #0008; border:1px solid #0003; position:relative; }
+  .sheet::before { content:""; position:absolute; inset:14px; border:3px double var(--ink); pointer-events:none; }
+  header { text-align:center; margin-bottom:24px; }
+  h1 { font:900 clamp(56px,10vw,112px)/1 "Abril Fatface", Georgia, serif; letter-spacing:.04em; margin:8px 0 0; }
+  .sub { font-style:italic; opacity:.75; margin-top:6px; }
+  video { width:100%; display:block; background:#000; border:2px solid var(--ink); }
+  .meta { display:flex; flex-wrap:wrap; gap:6px 22px; justify-content:center; font-size:14px; opacity:.75; margin:14px 0 30px; }
+  h2 { font-size:20px; text-transform:uppercase; letter-spacing:.14em; border-bottom:1px solid var(--rule); padding-bottom:4px; margin-top:36px; }
+  .stills { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:10px; }
+  .stills img { width:100%; display:block; border:1px solid var(--ink); }
+  code { background:#0000000d; padding:1px 5px; border-radius:3px; font-size:14px; }
+  a { color:var(--accent); }
+  footer { margin-top:36px; font-size:13px; opacity:.65; text-align:center; }
+  @media (max-width:640px){ .sheet{ margin:0; padding:28px 20px 40px; } .sheet::before{ inset:6px; } }
+</style>
+</head>
+<body>
+<main class="sheet">
+  <header>
+    <h1>DUCK</h1>
+    <div class="sub">a silent picture, from the screenplay by Damian Gason</div>
+  </header>
+
+  <video controls preload="metadata" poster="stills/title.jpg" playsinline>
+    <source src="duck.mp4" type="video/mp4">
+    Your browser can't play this video. <a href="duck.mp4">Download it instead.</a>
+  </video>
+  <div class="meta">
+    <span>3 min 32 s</span><span>1280 &times; 720, 24 fps</span><span>No dialogue</span>
+    <span>Every frame drawn by code</span><span><a href="https://github.com/qmzpalgh/claude-duck">Source on GitHub</a></span>
+  </div>
+
+  <h2>The story</h2>
+  <p>On the night the balloon factory goes bust, Colin drives home in the rain with his desk in a box,
+  and runs over a fox. A duck in the long grass sees it all. At home a letter is waiting: Lily has left,
+  and she has taken the cat. After that, wherever Colin goes, the duck goes too, with unfortunate results
+  for Colin's head, arm and eventually everything else. It all ends on a hospital ward, with a glass of
+  orange juice and a kindly cleaner.</p>
+
+  <h2>Stills</h2>
+  <div class="stills">
+    <img src="stills/poster.jpg" alt="The duck peers out of the long grass at the departing tail lights" loading="lazy">
+    <img src="stills/s1.jpg" alt="Colin walks back from the fox in the rain, hazard lights blinking" loading="lazy">
+    <img src="stills/s2.jpg" alt="The first hospital visit: the doctor checks Colin's pupils while the cleaner looks on" loading="lazy">
+    <img src="stills/s3.jpg" alt="The duck lands on the bonnet and pecks at the windscreen" loading="lazy">
+    <img src="stills/s4.jpg" alt="Colin hunts for the duck with a feather duster; it stands right behind him" loading="lazy">
+    <img src="stills/s5.jpg" alt="Full body cast, hearts in the air" loading="lazy">
+    <img src="stills/s6.jpg" alt="The duck watches from behind the blinds" loading="lazy">
+  </div>
+
+  <h2>How it was made</h2>
+  <p>No generative image or video models were used. Every shot is a small Python function that draws a frame
+  with <a href="https://www.cairographics.org/">Cairo</a> vector shapes: flat colour, a dark ink outline and a
+  paper-grain overlay. The characters are articulated cut-out puppets (a pose is just a handful of joint angles),
+  animated <em>on twos</em> (12 drawings a second) for the limited, economical feel of the old British cut-out
+  cartoons. The score (a concertina waltz, a hornpipe, pizzicato and glockenspiel) and every sound effect are
+  synthesised with numpy. The whole film renders in under a minute with <code>python src/build.py</code>.</p>
+
+  <footer>Story and screenplay &copy; Damian Gason. Animation code released under the Apache 2.0 licence.</footer>
+</main>
+</body>
+</html>
